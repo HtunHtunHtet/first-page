@@ -1,0 +1,15 @@
+{
+    "name": "htunhtunhtet/first-page",
+    "autoload": {
+        "psr-4": {
+            "Application\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "htunhtunhtet",
+            "email": "ryanhhh91@gmail.com"
+        }
+    ],
+    "require": {}
+}
