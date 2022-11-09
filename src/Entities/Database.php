@@ -5,29 +5,21 @@ declare(strict_types=1);
 namespace Application\Entities;
 
 use mysqli;
+use mysqli_sql_exception;
 
 class Database
 {
-    private string $server;
+    private string $server = '127.0.0.1';
 
-    private string $user;
+    private string $user = 'root';
 
-    private string $pass ;
+    private string $pass = 'root';
 
-    private int $port ;
+    private int $port = 8889;
 
-    private string $dbName;
+    private string $dbName = 'first_page';
 
     private mysqli $mysqli;
-
-    public function __construct(string $server, string $user, string $pass, int $port, string $dbName)
-    {
-        $this->server = $server;
-        $this->user = $user;
-        $this->pass = $pass;
-        $this->port = $port;
-        $this->dbName = $dbName;
-    }
 
 
     public function connect () : void
@@ -40,20 +32,26 @@ class Database
             $this->port
         );
 
+        //if there is error, $connect_error should not be null,
+        //try to change your pass or port
         if (null !== $this->mysqli->connect_error) {
-            echo 'Errno: '.$this->mysqli->connect_errno;
-            echo '<br>';
-            echo 'Error: '.$this->mysqli->connect_error;
+            throw new mysqli_sql_exception('Errno: ', $this->mysqli->connect_errno);
             exit();
         }
 
-        echo "success";
+        //if above stage is over, then we can consider the mysqli is connect successfully
     }
 
     public function closeConnection(): void
     {
+        // closing mysqli connection is optional,
+        // but it will increase performance for future developments
         $this->mysqli->close();
-        echo 'connection closed';
+    }
+
+    public function getMySqli(): mysqli
+    {
+        return $this->mysqli;
     }
 
 }
