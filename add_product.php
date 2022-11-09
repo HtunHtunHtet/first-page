@@ -34,13 +34,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once ('src/includes/header.inc.php')?>
+    <head>
+        <?php require_once ('src/includes/header.inc.php')?>
+    </head>
     <body>
     <?php require_once ('src/includes/navbar.inc.php')?>
         <div class="container">
             <div class="col-md-6 offset-md-3">
-                <div class="card">
-                    <div class="card-header mt-2">
+                <div class="card mt-2">
+                    <div class="card-header">
                         Add Product
                     </div>
                     <div class="card-body">

@@ -17,7 +17,9 @@ $stmt->bind_result( $id, $name, $description, $price, $quality);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <?php require ('src/includes/header.inc.php') ?>
+    <head>
+        <?php require ('src/includes/header.inc.php') ?>
+    </head>
     <body>
         <?php require ('src/includes/navbar.inc.php')?>
         <div class="container">
