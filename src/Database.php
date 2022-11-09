@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Application\Entities;
+namespace Application;
 
 use mysqli;
 use mysqli_sql_exception;

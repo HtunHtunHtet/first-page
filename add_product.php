@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Application\Entities\Database;
+use Application\Database;
 
 require_once realpath('vendor/autoload.php');
 
@@ -28,55 +28,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 
     //redirect
-    header("Location: index.php");
+    header("Location: product.php");
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>First Page - Add product</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <link rel="stylesheet" href="./vendor/twitter/bootstrap/dist/css/bootstrap.min.css">
-    </head>
+<?php require_once ('src/includes/header.inc.php')?>
     <body>
-    <div class="container">
-        <div class="col-md-6 offset-md-3">
-            <div class="card">
-                <div class="card-header mt-2">
-                    Add Product
-                </div>
-                <div class="card-body">
-                    <form method="post" name="productForm" >
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Product Name</label>
-                            <input class="form-control" type="text" id="name" name="name" placeholder="Product Name" required>
-                        </div>
+    <?php require_once ('src/includes/navbar.inc.php')?>
+        <div class="container">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header mt-2">
+                        Add Product
+                    </div>
+                    <div class="card-body">
+                        <form method="post" name="productForm" >
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Product Name</label>
+                                <input class="form-control" type="text" id="name" name="name" placeholder="Enter Product Name" required>
+                            </div>
 
-                        <div class="mb-3">
-                            <label for="quantity" class="form-label">Quantity</label>
-                            <input class="form-control" type="number" id="quantity" name="quantity" step="1" required>
-                        </div>
+                            <div class="mb-3">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input class="form-control" type="number" id="quantity" name="quantity" step="1" placeholder="Enter Quantity" required>
+                            </div>
 
-                        <div class="mb-3">
-                            <label for="price" class="form-label">Price</label>
-                            <input class="form-control" type="number" id="price" name="price" step="0.1" required>
-                        </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input class="form-control" type="number" id="price" name="price" step="0.1" placeholder="Enter Price" required>
+                            </div>
 
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="4" required ></textarea>
-                        </div>
-                        <input class="btn btn-primary" type="submit" value="Submit" name="submit">
-                    </form>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter Description" required ></textarea>
+                            </div>
+                            <input class="btn btn-primary" type="submit" value="Submit" name="submit">
+                        </form>
+                    </div>
                 </div>
             </div>
-
         </div>
-
-    </div>
     </body>
 </html>
 
