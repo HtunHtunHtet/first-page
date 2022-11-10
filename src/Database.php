@@ -9,18 +9,23 @@ use mysqli_sql_exception;
 
 class Database
 {
+    final protected const LIVE_PW = 'htunhtet911130';
+    final protected const LOCAL_PW = 'root';
+    final protected const LIVE_PORT = 3306;
+    final protected const LOCAL_PORT = 8889;
+    final protected const IS_LIVE  = true;
+
     private string $server = '127.0.0.1';
 
     private string $user = 'root';
 
-    private string $pass = 'root';
+    private string $pass = (self::IS_LIVE) ? self::LIVE_PW : self::LOCAL_PW ;
 
-    private int $port = 8889;
+    private int $port =  (self::IS_LIVE) ? self::LIVE_PORT : self::LOCAL_PORT;
 
     private string $dbName = 'first_page';
 
     private mysqli $mysqli;
-
 
     public function connect () : void
     {
