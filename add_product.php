@@ -11,10 +11,15 @@ $database->connect();
 $mysqli =  $database->getMySqli();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name  = (string)$_POST['name'];
-    $quantity = (int)$_POST['quantity'];
-    $price  = (int)($_POST['price'] * 100);
-    $description = (string)$_POST['description'];
+    $name  = (empty($_POST['name'])) ? null : (string)$_POST['name'];
+    $quantity = (empty($_POST['quantity'])) ? null : (int)$_POST['quantity'];
+    $price  = (empty($_POST['price'])) ? null : (int)($_POST['price'] * 100);
+    $description = (empty($_POST['description']))? null : (string)$_POST['description'];
+
+    if (null === $name || null === $quantity || null === $price || null === $description ) {
+        echo 'Unable to submit form , all fields are required';
+        die;
+    }
 
     //add product
     $stmt = $mysqli ->prepare("INSERT INTO product (name, price, description ) values (?, ?, ?)");

@@ -7,7 +7,7 @@ namespace Application;
 use mysqli;
 use mysqli_sql_exception;
 
-class Database
+final class Database
 {
     final protected const LIVE_PW = 'htunhtet911130';
     final protected const LOCAL_PW = 'root';
