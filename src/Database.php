@@ -13,7 +13,8 @@ final class Database
     final protected const LOCAL_PW = 'root';
     final protected const LIVE_PORT = 3306;
     final protected const LOCAL_PORT = 8889;
-    final protected const IS_LIVE  = true;
+    final protected const IS_LIVE  = false;
+    final protected const DB_NAME = 'first_page';
 
     private string $server = '127.0.0.1';
 
@@ -23,7 +24,7 @@ final class Database
 
     private int $port =  (self::IS_LIVE) ? self::LIVE_PORT : self::LOCAL_PORT;
 
-    private string $dbName = 'first_page';
+    private string $dbName = self::DB_NAME;
 
     private mysqli $mysqli;
 

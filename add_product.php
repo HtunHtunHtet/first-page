@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <body>
     <?php require_once ('src/includes/navbar.inc.php')?>
         <div class="container">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-8 offset-md-2">
                 <div class="card mt-2">
                     <div class="card-header">
                         Add Product
