@@ -1,10 +1,10 @@
-//let map;
+//Global Variables
 let locations = [];
 let infowindow = null;
 
 const image = {
     //get marker
-    url: "https://developers.google.com/static/maps/documentation/javascript/images/default-marker.png ",
+    url: "https://developers.google.com/static/maps/documentation/javascript/images/default-marker.png",
     // This marker is 20 pixels wide by 37 pixels high.
     size: new google.maps.Size(26, 37),
     // The origin for this image is (0, 0).
@@ -19,7 +19,10 @@ const shape = {
     type: "poly",
 };
 
-document.addEventListener("DOMContentLoaded", function(event) {
+$(document).ready(function() {
+
+    initEarthquakeTable();
+
     callAPI()
      .then(result => {
         //locations
@@ -30,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
              let type = feature.properties.type;
              let time = new Date(feature.properties.time).toUTCString();
 
-             // order is lat, long , z-index, location , datetime , type for the order in which these markers should display on top of each others
+             // order is lat, long , z-index (for overlapping markers), location , datetime and type
              locations.push({
                  lat: lat,
                  long: long,
@@ -44,6 +47,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
          initMap();
        })
 });
+
+let initEarthquakeTable = () => {
+    $('#earthquakeTable').DataTable({
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true,
+        scrollX: true,
+        ajax: {
+            url: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson',
+            dataSrc: 'features'
+        },
+        columns: [
+            { data: 'properties.title' },
+            { data: 'properties.mag' },
+            {
+                data: 'properties.url',
+                render: function (data) {
+                    return `<a href=${data} target="_blank">${data}</a>`
+                }
+            },
+            { data: 'properties.place'},
+        ],
+        order:[1,'desc']
+    });
+}
 
 //api call
 let callAPI = async () => {
@@ -67,10 +96,8 @@ let initMap = () => {
 
 let setMarkers = (map) => {
 
-    console.log(locations);
     //create locations
     locations.map((location) => {
-
 
         //create markers
         let marker = new google.maps.Marker({
@@ -92,7 +119,7 @@ let setMarkers = (map) => {
             //create information window
             infowindow = new google.maps.InfoWindow({
                 content: location.place,
-                ariaLabel: "hello label",
+                ariaLabel: location.type,
             });
 
             infowindow.open({
