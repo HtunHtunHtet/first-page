@@ -1,0 +1,23 @@
+{
+  "name": "first-page",
+  "version": "1.0.0",
+  "description": "First Page",
+  "main": "src/dist/js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HtunHtunHtet/first-page.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HtunHtunHtet/first-page/issues"
+  },
+  "homepage": "https://github.com/HtunHtunHtet/first-page#readme",
+  "dependencies": {
+    "bootstrap": "^5.2.2",
+    "datatables.net": "^1.13.1"
+  }
+}

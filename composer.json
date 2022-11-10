@@ -12,7 +12,6 @@
         }
     ],
     "require": {
-        "ext-mysqli": "*",
-        "twitter/bootstrap": "^5.2"
+        "ext-mysqli": "*"
     }
 }
